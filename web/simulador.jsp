@@ -124,7 +124,13 @@
         
 </table>       
         
-        <table class="table container">
+        
+            
+                <%
+                    if (request.getAttribute("plan") != null) {
+
+                %>
+                <table class="table container">
             <thead class="thead-dark"></br>
                 <tr>
                     <th >Cuota #</th>
@@ -134,9 +140,8 @@
                     <th >Saldo del Credito</th>
                 </tr>
             </thead>
-            
-                <%
-                    if (request.getAttribute("plan") != null) {
+            <%
+                    
                         List<PlanPago> plan = (List<PlanPago>) request.getAttribute("plan");
                         for (PlanPago p : plan) {
                 %>
