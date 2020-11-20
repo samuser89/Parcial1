@@ -15,6 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 /**
  *
@@ -34,34 +37,41 @@ public class ParcialController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+    
     
     int nroCuotas=Integer.valueOf(request.getParameter("CantiCuotas"));
-    double valorPrestamo=Math.round(Double.valueOf(request.getParameter("VlrPrestamo")));
+    double valorPrestamo=Double.valueOf(request.getParameter("VlrPrestamo"));
     double tasa = Double.valueOf(request.getParameter("Tasa")) / 100;
         
         List<PlanPago> plan = new ArrayList<>();        
-        double cuotaMensual = Math.round(valorPrestamo*((tasa * (Math.pow((1+tasa),nroCuotas))) / ((Math.pow((1+tasa),nroCuotas)) - 1)));
+        double cuotaMensual = valorPrestamo*((tasa * (Math.pow((1+tasa),nroCuotas))) / ((Math.pow((1+tasa),nroCuotas)) - 1));
     
         
         
 //VP * ((i * ((1+i) ^ n)) / (((1+i) ^ n) - 1))                 
-        
+            double abonoInt = 0;
+            double abonoCap = 0;
+            double nuevoSaldo = 0;
+            
         for (int i = 0; i <= nroCuotas; i++) {
             PlanPago pago;
-            
-            
-            double abonoInt = Math.round(valorPrestamo*tasa);
-            double abonoCap = Math.round(cuotaMensual-abonoInt);
-            double nuevoSaldo = Math.round(valorPrestamo-abonoCap);
 
+            
+            
+            
             if(i == 0){
-                pago = new PlanPago(i, 0, 0, 0, valorPrestamo);
+                pago = new PlanPago(i, abonoInt, abonoCap, 0, valorPrestamo);
                 
             }else{
                 
                 pago = new PlanPago(i, abonoInt, abonoCap, cuotaMensual, valorPrestamo);
             }
+            abonoInt = valorPrestamo*tasa;
+            abonoCap = cuotaMensual-abonoInt;
+            nuevoSaldo = valorPrestamo-abonoCap;
+
+            System.out.print(i + " - " +abonoInt + " - " + abonoCap + " - " +cuotaMensual + " - " + valorPrestamo);
+            
             valorPrestamo=nuevoSaldo;
             plan.add(pago);
             

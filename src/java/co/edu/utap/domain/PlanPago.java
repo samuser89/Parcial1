@@ -7,7 +7,7 @@ package co.edu.utap.domain;
 
 /**
  *
- * @author Samsung
+ * @author samuel.serna
  */
 public class PlanPago {
     private int NroCuota;
