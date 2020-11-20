@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 19/11/2020, 07:23:42 AM
+    Document   : register
+    Created on : 19/11/2020, 07:23:55 AM
     Author     : samuel.serna
 --%>
 
@@ -31,91 +31,99 @@
         <title>PreParcial</title>
         
     </head>
+    
+    
     <body>
-        <h1>Ejercicio PreParcial</h1>
-
-<div class="row">
-  <div class="col-2">
-    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="index.jsp" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="register.jsp" role="tab" aria-controls="v-pills-btnregister" aria-selected="true">Registro Menor</a>
-      <!--<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>-->
-      <!--<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>-->
-    </div>
-  </div>
-  <div class="col-9">
-    <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-        <div class="tab-pane fade" id="v-pills-btnregister" role="tabpanel" aria-labelledby="v-pills-btnregister-tab">
-          
-          
-              <h2>Registro Menor</h2>
+        <div class="container">
+<ul class="nav nav-pills mb-6" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Registro Menor</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
+  <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
+      <h2>Registro Menor</h2>
 
               <form method="post" action="verify">      
-              <table class="col-3">
+              <table class="col-4">
                  
             <tr>
-            <label class="col-1">Documento:</label>
+            <label class="col-2">Documento:</label>
             <input type="number" id="IdMenor" name="IdMenor"/>
             </tr><br/>
                   
             <tr>
-            <label class="col-1">Nombres:</label> 
+            <label class="col-2">Nombres:</label> 
             <input type="text" id="txtNombre" name="txtNombre"/>
             </tr> <br/>
             
             <tr>
-            <label class="col-1">Apellidos:</label> 
+            <label class="col-2">Apellidos:</label> 
             <input type="text" id="txtApellido" name="txtApellido"/>
             </tr> <br/>
                         
             <tr>
-            <label class="col-1">Dirección:</label> 
+            <label class="col-2">Dirección:</label> 
             <input type="text" id="txtDireccion" name="txtDireccion"/>
             </tr> <br/>
                         
             <tr>
-            <label class="col-1">Edad:</label> 
+            <label class="col-2">Edad:</label> 
             <input type="number" id="Edad" name="Edad"/>
             </tr> <br/>
             
             <tr>
-            <label class="col-1">Fecha Nacimiento:</label> 
+            <label class="col-2">Fecha Nacimiento:</label> 
             <input type="date" id="birthday" name="birthday"/>
             </tr>
             
             <br/>
                         
             <tr>
-            <label class="col-1">Lugar de Nacimiento:</label> 
+            <label class="col-2">Lugar de Nacimiento:</label> 
             <input type="text" id="txtNacimiento" name="txtNacimiento"/>
             </tr> <br/>  
             
             <tr>
-            <label class="col-1">Telefono:</label> 
+            <label class="col-2">Telefono:</label> 
             <input type="number" id="phone" name="phone"/>
+            </tr> <br/>            
+            
+            <tr>
+            <label class="col-2">Salario Trabajador:</label> 
+            <input type="number" id="SalarioTrabajador" name="SalarioTrabajador"/>
             </tr> <br/>
-             <div>        
-            <button type="submit" class="col-1 btn btn-primary" href="verify">Verificar</button>
+            
+            <tr>
+            <label class="col-2">Salario Conyuge:</label> 
+            <input type="number" id="SalarioConyuge" name="SalarioConyuge"/>
+            </tr> <br/>
+            
+            <div>        
+            <button type="submit" class="col-2 btn btn-outline-primary" href="verify">Verificar</button>
                
                     
-            <button type="reset" class="btn btn-secondary" href="#index">Cancelar</button>
+            <button type="reset" class="btn btn-secondary" href="#pills-home">Cancelar</button>
             </div>
 
               </table>
                   
-            </form>      
-            </div>  
-
-           
-   
-                
-      </div>
+            </form>     
       
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-      
-    </div>
+      <% if (request.getAttribute("verify") !=  null){ %> 
+      <label><%= request.getAttribute("verify")%> </label>
+      <%}%>
   </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+</div>
+
+     </div>   
     </body>
 </html>
